@@ -1,0 +1,8 @@
+collections:
+- name: ansible.eda
+- name: cloin.eda
+- name: cloin.datadog
+- name: ansible.utils
+- name: dynatrace.event_driven_ansible
+- name: ibm.turbonomic_eda
+- name: ibm.instana

@@ -1,0 +1,39 @@
+---
+- name: Rulebook Turbonomic Webhook Actions
+  hosts: all
+  sources:
+    - ansible.eda.webhook:
+        host: 0.0.0.0
+        port: 5000
+
+  rules:
+    - name: Open Jira Ticket for Virtual Machine Scale Action
+      condition: event.payload.target.className == "VirtualMachine" and
+                 event.payload.actionType == "SCALE" and
+                 event.payload.target.environmentType == "CLOUD" and
+                 event.payload.target.discoveredBy.type == "GCP"
+      action:
+        run_job_template:
+          name: 'Turbonomic EDA Scaling'
+          organization: 'Default'
+          job_args:
+            extra_vars:
+              instance_type: "{{ event['payload']['newEntity']['displayName'] }}"
+              instance_id: "{{ event['payload']['target']['vendorIds'][event['payload']['target']['discoveredBy']['displayName']] }}"
+              instace_region: "{{ event['payload']['currentLocation']['vendorIds'][event['payload']['currentLocation']['discoveredBy']['displayName']] }}"
+
+    - name: Open Jira Ticket for VirtualVolume Delete Action
+      condition: event.payload.target.className == "VirtualVolume" and
+                 event.payload.actionType == "DELETE" and
+                 event.payload.target.environmentType == "CLOUD" and
+                 event.payload.target.discoveredBy.type == "GCP"
+      action:
+        run_playbook:
+          name: ibm.turbonomic_eda.open_jira_ticket
+          extra_vars:
+            disk_state: "{{ event['payload']['virtualDisks[0]']['attachmentState'] }}"
+            disk_tier: "{{ event['payload']['virtualDisks[0]']['tier'] }}"
+            disk_daysUnattached: "{{ event['payload']['virtualDisks[0]']['numDaysUnattached'] }}"
+            instance_type: "{{ event['payload']['newEntity']['displayName'] }}"
+            instance_name: "{{ event['payload']['target']['vendorIds'][event['payload']['target']['discoveredBy']['displayName']] }}"
+            instace_region: "{{ event['payload']['currentLocation']['vendorIds'][event['payload']['currentLocation']['discoveredBy']['displayName']] }}"    
