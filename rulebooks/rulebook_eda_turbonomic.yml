@@ -8,6 +8,7 @@
 
   rules:
     - name: Open Jira Ticket for Virtual Machine Scale Action
+      condition: 1 == 1
       action:
         run_job_template:
           name: 'Turbonomic EDA Scaling'
