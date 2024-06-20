@@ -12,7 +12,7 @@
       action:
         run_job_template:
           name: 'Turbonomic EDA Scaling'
-          organization: 'Default'
+          organization: 'Sulamerica'
           job_args:
             extra_vars:
               instance_type: "{{ event['payload']['newEntity']['displayName'] }}"
