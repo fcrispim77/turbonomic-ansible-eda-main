@@ -8,10 +8,6 @@
 
   rules:
     - name: Open Jira Ticket for Virtual Machine Scale Action
-      condition: event.payload.target.className == "VirtualMachine" and
-                 event.payload.actionType == "SCALE" and
-                 event.payload.target.environmentType == "CLOUD" and
-                 event.payload.target.discoveredBy.type == "GCP"
       action:
         run_job_template:
           name: 'Turbonomic EDA Scaling'
