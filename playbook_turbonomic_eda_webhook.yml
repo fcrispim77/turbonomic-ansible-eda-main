@@ -12,6 +12,7 @@
     ec2_region: ""
     details: ""
     display_name: ""
+    instance_region: ""
     
   tasks:
 
