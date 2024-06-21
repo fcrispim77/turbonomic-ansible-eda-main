@@ -7,12 +7,9 @@
     jira_pwd_token: "{{ lookup('ansible.builtin.env', 'JIRA_PWD_TOKEN') }}"
     jira_uri: "{{ lookup('ansible.builtin.env', 'JIRA_URI') }}"
     jira_project: "{{ lookup('ansible.builtin.env', 'JIRA_PROJECT') }}"
-    instance_type: ""
-    instance_id: ""
     ec2_region: ""
     details: ""
     display_name: ""
-    instance_region: ""
     
   tasks:
 
