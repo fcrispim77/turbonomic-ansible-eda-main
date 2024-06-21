@@ -31,10 +31,10 @@
 
     - name: Create an issue on Jira using Ansible
       community.general.jira:
-        uri: {{ jira_uri }}
+        uri: "{{ jira_uri }}"
         #Pode ser utilizado token
-        username: '{{ jira_username }}'
-        password: '{{ jira_pwd_token }}'
+        username: "{{ jira_username }}"
+        password: "{{ jira_pwd_token }}"
         project: CTT
         operation: create
         summary: Integração Turbonomic x Ansible x Jira
