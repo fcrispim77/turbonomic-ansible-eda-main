@@ -5,7 +5,8 @@
   vars:
     jira_username: "{{ lookup('ansible.builtin.env', 'JIRA_USERNAME') }}"
     jira_pwd_token: "{{ lookup('ansible.builtin.env', 'JIRA_PWD_TOKEN') }}"
-    jira_uri: 'https://sulamerica.atlassian.net/'
+    jira_uri: "{{ lookup('ansible.builtin.env', 'JIRA_URI') }}"
+    jira_project: "{{ lookup('ansible.builtin.env', 'JIRA_PROJECT') }}"
 
   tasks:
 
@@ -35,9 +36,9 @@
         #Pode ser utilizado token
         username: "{{ jira_username }}"
         password: "{{ jira_pwd_token }}"
-        project: CTT
+        project: "{{ jira_project }}"
         operation: create
-        summary: Integração Turbonomic x Ansible x Jira
+        summary: "Integração Turbonomic x Ansible x Jira"
         description: "Created using Ansible {{ instance_type }} {{ instance_region}} \n Turbonomic Recommendation: {{ details }}"
         issuetype: Task
       args:
