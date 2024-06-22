@@ -17,4 +17,4 @@
             extra_vars:
               instance_type: "{{ event['payload']['newEntity']['displayName'] }}"
               instance_id: "{{ event['payload']['target']['vendorIds'][event['payload']['target']['discoveredBy']['displayName']] }}"
-              instace_region: "{{ event['payload']['currentLocation']['vendorIds'][event['payload']['currentLocation']['discoveredBy']['displayName']] }}"
+              instance_region: "{{ event['payload']['currentLocation']['vendorIds'][event['payload']['currentLocation']['discoveredBy']['displayName']] }}"
