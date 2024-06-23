@@ -48,8 +48,8 @@
       delegate_to: localhost
     
     - set_fact:
-        incident_number_cached: "{{ issue.record.number }}"
+        incident_number_cached: "{{ issue.meta.key }}"
         cacheable: true
 
     - ansible.builtin.debug:
-        msg: "Ticket criado com as recomendacoes do Turbonomic: {{ issue.record.number }}"
+        msg: "Ticket criado com as recomendacoes do Turbonomic: {{ issue.meta.key }}"
