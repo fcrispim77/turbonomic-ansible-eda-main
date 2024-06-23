@@ -43,10 +43,7 @@
         summary: "Integração Turbonomic x Ansible x Jira"
         description: "Created using Ansible {{ instance_type }} {{ instance_region}} \n Turbonomic Recommendation: {{ details }}"
         issuetype: Task
-      args:
-        fields:
-            customfield_13225: "test"
-            customfield_12931: {"value": "Test"}
+
       register: issue
       delegate_to: localhost
     
