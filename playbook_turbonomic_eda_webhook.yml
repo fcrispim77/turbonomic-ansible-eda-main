@@ -3,10 +3,6 @@
   hosts: all
   gather_facts: false
   vars:
-    jira_username: "{{ lookup('ansible.builtin.env', 'JIRA_USERNAME') }}"
-    jira_pwd_token: "{{ lookup('ansible.builtin.env', 'JIRA_PWD_TOKEN') }}"
-    jira_uri: "{{ lookup('ansible.builtin.env', 'JIRA_URI') }}"
-    jira_project: "{{ lookup('ansible.builtin.env', 'JIRA_PROJECT') }}"
     ec2_region: ""
     details: ""
     display_name: ""
