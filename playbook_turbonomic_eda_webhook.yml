@@ -32,6 +32,9 @@
     - name: Extra_vars - display name
       ansible.builtin.debug:
         var: display_name
+    - name: Extra_vars - Jira URI
+      ansible.builtin.debug:
+        var: jira_uri
 
     - name: Create an issue on Jira using Ansible
       community.general.jira:
