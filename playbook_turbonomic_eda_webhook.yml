@@ -41,7 +41,7 @@
         project: "{{ jira_project }}"
         operation: create
         summary: "Integração Turbonomic x Ansible x Jira"
-        description: "Created using Ansible {{ instance_type }} {{ instance_region}} \n Turbonomic Recommendation: {{ details }}"
+        description: {{ action_detailed_description }}
         issuetype: Task
 
       register: issue
