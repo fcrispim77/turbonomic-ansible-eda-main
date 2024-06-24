@@ -18,3 +18,15 @@
               instance_type: "{{ event['payload']['newEntity']['displayName'] }}"
               instance_id: "{{ event['payload']['target']['vendorIds'][event['payload']['target']['discoveredBy']['displayName']] }}"
               instance_region: "{{ event['payload']['currentLocation']['vendorIds'][event['payload']['currentLocation']['discoveredBy']['displayName']] }}"
+              action_detailed_description : "Turbonomic Recomenda: {{ event['payload']['details'] }} \n\n
+Conta: {{ event['payload']['target']['aspects']['cloudAspect']['businessAccount']['displayName'] }}\n
+AccID: {{ event['payload']['target']['aspects']['cloudAspect']['businessAccount']['uuid'] }}\n
+Identificador da instância: {{ event['payload']['target']['uuid'] }}\n
+Nome da instância: {{ event['payload']['target']['displayName'] }}\n
+Tipo da instância Atual: {{ event['payload']['currentEntity']['displayName'] }}\n
+Tipo da instância Recomendada: {{ event['payload']['newEntity']['displayName'] }}\n
+Economia Mensal Estimada: US$ {{ event['payload']['stats']['value'] * 730 }}\n
+Economia Anual Estimada: US$ {{ event['payload']['stats']['value'] * 730 * 6 }}\n
+Região: {{ event['payload']['currentLocation']['vendorIds'][event['payload']['currentLocation']['discoveredBy']['displayName']] }}\n
+UC:\n
+Projeto: \n"
