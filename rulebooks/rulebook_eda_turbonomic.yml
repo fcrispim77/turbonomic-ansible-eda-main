@@ -8,7 +8,7 @@
 
   rules:
     - name: Open Jira Ticket for Virtual Machine Scale Action
-      condition: event.payload.target.className == "VirtualMachine" and event.payload.actionType == "SCALE"
+      condition: event.payload.target.className == "VirtualMachine" and event.payload.actionType == "SCALE" and event.payload.stats[0].value > 0
       action:
         run_job_template:
           name: 'Turbonomic EDA Scaling'
@@ -19,15 +19,16 @@
               instance_type: "{{ event['payload']['newEntity']['displayName'] }}"
               instance_id: "{{ event['payload']['target']['vendorIds'][event['payload']['target']['discoveredBy']['displayName']] }}"
               instance_region: "{{ event['payload']['currentLocation']['vendorIds'][event['payload']['currentLocation']['discoveredBy']['displayName']] }}"
-              action_detailed_description : "Turbonomic Recomenda: {{ event['payload']['details'] }} \n\n
-Conta: {{ event['payload']['target']['aspects']['cloudAspect']['businessAccount']['displayName'] }}\n
-AccID: {{ event['payload']['target']['aspects']['cloudAspect']['businessAccount']['uuid'] }}\n
-Identificador da instância: {{ event['payload']['target']['uuid'] }}\n
-Nome da instância: {{ event['payload']['target']['displayName'] }}\n
-Tipo da instância Atual: {{ event['payload']['currentEntity']['displayName'] }}\n
-Tipo da instância Recomendada: {{ event['payload']['newEntity']['displayName'] }}\n
-Economia Mensal Estimada: US$ {{ (event['payload']['stats'][0]['value'] * 730) | abs | round(2,'common') }} \n
-Economia Anual Estimada: US$ {{ (event['payload']['stats'][0]['value'] * 730 * 12) | abs | round(2,'common') }} \n
-Região: {{ event['payload']['currentLocation']['vendorIds'][event['payload']['currentLocation']['discoveredBy']['displayName']] }}\n
-UC:\n
-Projeto: \n"
+              action_detailed_description : "*Turbonomic Recomenda:* {{ event['payload']['details'] }}\n
+*Motivo:* {{ event['payload']['risk']['subCategory'],event['payload']['risk']['subCategory'] }}\n\n
+*Conta:* {{ event['payload']['target']['aspects']['cloudAspect']['businessAccount']['displayName'] }}\n
+*AccID:* {{ event['payload']['target']['aspects']['cloudAspect']['businessAccount']['uuid'] }}\n
+*Identificador da instância:* {{ event['payload']['target']['uuid'] }}\n
+*Nome da instância:* {{ event['payload']['target']['displayName'] }}\n
+*Tipo da instância Atual:* {{ event['payload']['currentEntity']['displayName'] }}\n
+*Tipo da instância Recomendada:* {{ event['payload']['newEntity']['displayName'] }}\n
+*Economia Mensal Estimada:* US$ {{ (event['payload']['stats'][0]['value'] * 730) | abs | round(2,'common') }} \n
+*Economia Anual Estimada:* US$ {{ (event['payload']['stats'][0]['value'] * 730 * 12) | abs | round(2,'common') }} \n
+*Região:* {{ event['payload']['currentLocation']['vendorIds'][event['payload']['currentLocation']['discoveredBy']['displayName']] }}\n
+*UC:*\n
+*Projeto:* \n"
