@@ -15,7 +15,7 @@
           organization: 'Sulamerica'
           job_args:
             extra_vars:
-              turbo_action_id: "{{ event['payload']['acctionID'] }}"
+              turbo_action_id: "{{ event['payload']['actionID'] }}"
               instance_type: "{{ event['payload']['newEntity']['displayName'] }}"
               instance_id: "{{ event['payload']['target']['vendorIds'][event['payload']['target']['discoveredBy']['displayName']] }}"
               instance_region: "{{ event['payload']['currentLocation']['vendorIds'][event['payload']['currentLocation']['discoveredBy']['displayName']] }}"
