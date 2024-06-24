@@ -41,7 +41,7 @@
         project: "{{ jira_project }}"
         operation: create
         summary: "Integração Turbonomic x Ansible x Jira"
-        description: {{ action_detailed_description }}
+        description: "{{ action_detailed_description }}"
         issuetype: Task
 
       register: issue
