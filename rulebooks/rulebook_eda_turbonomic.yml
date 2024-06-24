@@ -25,8 +25,8 @@ Identificador da instância: {{ event['payload']['target']['uuid'] }}\n
 Nome da instância: {{ event['payload']['target']['displayName'] }}\n
 Tipo da instância Atual: {{ event['payload']['currentEntity']['displayName'] }}\n
 Tipo da instância Recomendada: {{ event['payload']['newEntity']['displayName'] }}\n
-Economia Mensal Estimada: US$ {{ event['payload']['stats']['value'] * 730 }}\n
-Economia Anual Estimada: US$ {{ event['payload']['stats']['value'] * 730 * 6 }}\n
+Economia Mensal Estimada: US$ \n
+Economia Anual Estimada: US$ \n
 Região: {{ event['payload']['currentLocation']['vendorIds'][event['payload']['currentLocation']['discoveredBy']['displayName']] }}\n
 UC:\n
 Projeto: \n"
