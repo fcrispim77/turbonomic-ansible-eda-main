@@ -42,7 +42,7 @@
         operation: create
         summary: "Integração Turbonomic x Ansible x Jira"
         description: "{{ action_detailed_description }} \n\n Link Turbonomic: {{ turbonomic_uri }}/{{turbo_action_id}}"
-        issuetype: Task
+        issuetype: {{ jira_issuetype }}
 
       register: issue
       delegate_to: localhost
