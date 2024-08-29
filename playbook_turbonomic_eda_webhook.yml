@@ -45,10 +45,10 @@
         issuetype: "{{ jira_issuetype }}"
       args:
         fields:
-          customfield_31414: (Recursos)
-          customfield_29963: (Economia Estimada - U$)
-          customfield_29982: (Economia Final - U$)
-          customfield_29083: (Economia Anual - U$)
+          customfield_31414: "Recursos"
+          customfield_29963: "{{ action_saving }}"
+          customfield_29982: "{{ action_potentialsaving_month }}"
+          customfield_29083: "{{ action_potentialsaving_year }}"
       register: issue
       delegate_to: localhost
     
