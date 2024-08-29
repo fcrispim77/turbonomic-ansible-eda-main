@@ -51,7 +51,7 @@
           customfield_29083: "{{ action_potentialsaving_year }}"
       register: issue
       delegate_to: localhost
-    
+
     - set_fact:
         incident_number_cached: "{{ issue.meta.key }}"
         cacheable: true
