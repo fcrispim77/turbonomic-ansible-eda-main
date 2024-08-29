@@ -43,7 +43,12 @@
         summary: "Integração Turbonomic x Ansible x Jira"
         description: "{{ action_detailed_description }} \n\n Link Turbonomic: {{ turbonomic_uri }}/{{turbo_action_id}}"
         issuetype: "{{ jira_issuetype }}"
-
+      args:
+        fields:
+          customfield_31414: (Recursos)
+          customfield_29963: (Economia Estimada - U$)
+          customfield_29982: (Economia Final - U$)
+          customfield_29083: (Economia Anual - U$)
       register: issue
       delegate_to: localhost
     
