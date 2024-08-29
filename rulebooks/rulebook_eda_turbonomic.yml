@@ -16,6 +16,8 @@
           job_args:
             extra_vars:
               turbo_action_id: "{{ event['payload']['actionID'] }}"
+              cloud_account:  "{{ event['payload']['target']['aspects']['cloudAspect']['businessAccount']['displayName'] }}"
+              cloud_region: "{{ event['payload']['currentLocation']['vendorIds'][event['payload']['currentLocation']['discoveredBy']['displayName']] }}"
               instance_type: "{{ event['payload']['newEntity']['displayName'] }}"
               instance_id: "{{ event['payload']['target']['vendorIds'][event['payload']['target']['discoveredBy']['displayName']] }}"
               instance_region: "{{ event['payload']['currentLocation']['vendorIds'][event['payload']['currentLocation']['discoveredBy']['displayName']] }}"
