@@ -21,6 +21,8 @@
               instance_type: "{{ event['payload']['newEntity']['displayName'] }}"
               instance_id: "{{ event['payload']['target']['vendorIds'][event['payload']['target']['discoveredBy']['displayName']] }}"
               instance_region: "{{ event['payload']['currentLocation']['vendorIds'][event['payload']['currentLocation']['discoveredBy']['displayName']] }}"
+              instance_tag_project: "{{ event['payload']['target']['tags']['projeto'] }}"
+              instance_tag_owner: "{{ event['payload']['target']['tags']['owner'] }}"
               action_saving : "{{ (event['payload']['stats'][0]['value']) | abs | round(2,'common') }}"
               action_potentialsaving_month : "{{ (event['payload']['stats'][0]['value'] * 730) | abs | round(2,'common') }}"
               action_potentialsaving_year : "{{ (event['payload']['stats'][0]['value'] * 730 * 12) | abs | round(2,'common') }}"
@@ -37,4 +39,4 @@
 *Economia Anual Estimada:* US$ {{ (event['payload']['stats'][0]['value'] * 730 * 12) | abs | round(2,'common') }} \n
 *Região:* {{ event['payload']['currentLocation']['vendorIds'][event['payload']['currentLocation']['discoveredBy']['displayName']] }}\n
 *UC:*\n
-*Projeto:* \n"
+*Projeto:* "{{ event['payload']['target']['tags']['projeto'] }}" \n"
