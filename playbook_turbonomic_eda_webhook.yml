@@ -45,11 +45,49 @@
         issuetype: "{{ jira_issuetype }}"
       args:
         fields:
-          customfield_31414: "Recursos"
+          customfield_31414: "{{ instance_name }}"
           customfield_29963: "{{ action_saving }}"
           customfield_29982: "{{ action_potentialsaving_month }}"
           customfield_29083: "{{ action_potentialsaving_year }}"
       register: issue
+      delegate_to: localhost
+      
+    - name: Atualiza ticket para GCP
+      when:  '"GCP" in cloud_account'
+      community.general.jira:
+        uri: "{{ jira_uri }}"
+        #Pode ser utilizado token
+        username: "{{ jira_username }}"
+        password: "{{ jira_pwd_token }}"
+        project: "{{ jira_project }}"
+        issue: '{{ issue.meta.key }}'
+        operation: update
+      args:
+        fields:
+          customfield_29269: {{ cloud_account }}
+          customfield_29271: ""
+          customfield_29270: {{ cloud_region }}
+          customfield_29828: {{ instance_tag_project }}
+        register: issue
+      delegate_to: localhost
+
+    - name: Atualiza ticket para AWS
+      when:  '"AWS" in cloud_account' 
+      community.general.jira:
+        uri: "{{ jira_uri }}"
+        #Pode ser utilizado token
+        username: "{{ jira_username }}"
+        password: "{{ jira_pwd_token }}"
+        project: "{{ jira_project }}"
+        issue: '{{ issue.meta.key }}'
+        operation: update
+      args:
+        fields:
+          customfield_29008:  {{ cloud_account }}
+          customfield_29010:  "EC2"
+          customfield_29009:  {{ cloud_region }}
+          customfield_29827:  {{ instance_tag_project }}         
+        register: issue
       delegate_to: localhost
 
     - set_fact:
